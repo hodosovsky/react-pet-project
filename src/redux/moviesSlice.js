@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const apiKey = 'k_cxax043y';
+// const apiKey = 'k_cxax043y';
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://imdb-api.com/en/API/`,
+    baseUrl: `https://movies-1l0g.onrender.com/api/`,
   }),
-  tagTypes: ['Movie'],
+  tagTypes: ['Movies'],
   endpoints: builder => ({
     getTopFilms: builder.query({
-      query: name => ({ url: `${name}/${apiKey}`, method: 'GET' }),
+      query: name => name,
       providesTags: ['Movie'],
     }),
     // createPokemon: builder.mutation({
