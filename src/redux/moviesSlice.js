@@ -11,14 +11,6 @@ export const moviesApi = createApi({
       query: name => name,
       providesTags: ['Movie'],
     }),
-    // createPokemon: builder.mutation({
-    //   query: newPokemon => ({
-    //     url: `pokemon`,
-    //     method: 'POST',
-    //     body: newPokemon,
-    //   }),
-    //   invalidatesTags: ['Pokemon'],
-    // }),
   }),
 });
 

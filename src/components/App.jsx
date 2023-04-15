@@ -4,11 +4,14 @@ import { AiFillAndroid, AiFillCar } from 'react-icons/ai';
 import { RotatingLines } from 'react-loader-spinner';
 import { Box } from './Box/Box';
 import { useGetTopFilmsQuery } from 'redux/moviesSlice';
-import { useLoginMutation } from 'redux/api/authApi';
-// import { getLoggedin, getToken } from '../redux//slice/authSlice';
+import {
+  useLoginMutation,
+  useLazyGetCurrentUserQuery,
+} from 'redux/api/authApi';
+import { getLoggedin, getToken } from '../redux//slice/authSlice';
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Text = styled.p`
   /* color: ${p => p.theme.colors.primary}; */
@@ -23,17 +26,23 @@ const Text = styled.p`
 export const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userLogin] = useLoginMutation();
-  const { data, error, isFetching, isError } = useGetTopFilmsQuery('/');
-  // const token = useSelector(getToken);
-  // const isLogdedin = useSelector(getLoggedin);
+  const [userLogin, { isSuccess, isError }] = useLoginMutation();
+  const { data, error, isFetching } = useGetTopFilmsQuery('/');
+  const token = useSelector(getToken);
 
-  // const [fetchUser] = useLazyGetCurrentUserQuery;
-  // useEffect(() => {
-  //   if (!isLogdedin && token) {
-  //     fetchUser(null, { skip: !token });
-  //   }
-  // }, [fetchUser, isLogdedin, token]);
+  const isLogdedin = useSelector(getLoggedin);
+
+  const [fetchUser] = useLazyGetCurrentUserQuery();
+  useEffect(() => {
+    if (!isLogdedin && token) {
+      fetchUser(null, { skip: !token });
+    }
+  }, [fetchUser, isLogdedin, token]);
+
+  useEffect(() => {
+    isError && console.log('Invalid email or password');
+  }, [isSuccess, isError]);
+
   const stateMap = {
     email: setEmail,
     password: setPassword,
@@ -57,7 +66,6 @@ export const App = () => {
     user.email = email;
     user.password = password;
 
-    console.log('user:', user);
     userLogin(user);
 
     reset();
@@ -72,9 +80,10 @@ export const App = () => {
       py={8}
       height="100%"
       width="100%"
-      fontSize="xl"
-      // display="flex"
-      // justifyContent="senter"
+      fontSize="m"
+      display="flex"
+      flexWrap="wrap"
+      justifyContent="center"
       // alignItems="center"
       as="main"
     >
@@ -83,9 +92,21 @@ export const App = () => {
       <Button>search</Button>
 
       <form onSubmit={handleSubmit}>
-        <input type="email" onChange={handleAddInputData} name="email" />
+        <input
+          type="email"
+          onChange={handleAddInputData}
+          value={email}
+          name="email"
+          placeholder="email"
+        />
         <br />
-        <input type="password" onChange={handleAddInputData} name="password" />
+        <input
+          type="password"
+          onChange={handleAddInputData}
+          value={password}
+          name="password"
+          placeholder="password"
+        />
         <Button icon={AiFillAndroid} type="submit">
           LogIn
         </Button>
@@ -99,10 +120,20 @@ export const App = () => {
           visible={true}
         />
       )}
-      {data && !isFetching && !isError && (
-        <ul>
+
+      {data && !isFetching && (
+        <ul
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            gap: 40,
+            listStyle: 'none',
+            paddingLeft: 0,
+          }}
+        >
           {data.results.map(item => (
-            <li key={item.id}>
+            <li key={item.id} style={{ width: 200 }}>
               <img
                 src={`https://image.tmdb.org/t/p/w200/${item.poster_path}`}
                 alt={item.title ? item.title : item.name}
@@ -114,7 +145,7 @@ export const App = () => {
         </ul>
       )}
 
-      {isError && <h1>{error.data}</h1>}
+      {isError && <h1>{error?.data}</h1>}
     </Box>
   );
 };

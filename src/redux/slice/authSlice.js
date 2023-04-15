@@ -1,49 +1,41 @@
-// import { createSlice } from '@reduxjs/toolkit';
-// import { authApi } from '../api/authApi';
+import { createSlice } from '@reduxjs/toolkit';
+import { AuthApi } from '../api/authApi';
 
-// const initialState = {
-//   user: { name: '', email: '' },
-//   token: null,
-//   isLoggedin: false,
-// };
+const initialState = {
+  user: { email: '' },
+  token: null,
+  isLoggedin: false,
+};
 
-// export const AuthSlice = createSlice({
-//   name: 'authApi',
-//   initialState,
+export const AuthSlice = createSlice({
+  name: 'auth',
+  initialState,
 
-//   extraReducers: builder => {
-//     builder.addMatcher(
-//       authApi.endpoints.userSignup.matchFulfilled,
-//       (state, { payload }) => {
-//         state.user = payload.user;
-//         state.token = payload.token;
-//         state.isLoggedin = true;
-//       }
-//     );
-//     builder.addMatcher(
-//       authApi.endpoints.userLogin.matchFulfilled,
-//       (state, { payload }) => {
-//         state.user = payload.user;
-//         state.token = payload.token;
-//         state.isLoggedin = true;
-//       }
-//     );
-//     builder.addMatcher(
-//       authApi.endpoints.getCurrentUser.matchFulfilled,
-//       (state, { payload }) => {
-//         state.user = payload;
-//         state.isLoggedin = true;
-//       }
-//     );
-//     builder.addMatcher(
-//       authApi.endpoints.userLogout.matchFulfilled,
-//       (state, _) => {
-//         return (state = initialState);
-//       }
-//     );
-//   },
-// });
+  extraReducers: builder => {
+    builder.addMatcher(
+      AuthApi.endpoints.login.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload.user;
+        state.token = payload.token;
+        state.isLoggedin = true;
+      }
+    );
+    builder.addMatcher(
+      AuthApi.endpoints.getCurrentUser.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload;
+        state.isLoggedin = true;
+      }
+    );
+    builder.addMatcher(
+      AuthApi.endpoints.userLogout.matchFulfilled,
+      (state, _) => {
+        return (state = initialState);
+      }
+    );
+  },
+});
 
-// export const getUserName = state => state.auth.user.name;
-// export const getToken = state => state.auth.token;
-// export const getLoggedin = state => state.auth.isLoggedin;
+// export const getUserName = state => state.auth?.user?.name;
+export const getToken = state => state.auth?.token;
+export const getLoggedin = state => state.auth?.isLoggedin;

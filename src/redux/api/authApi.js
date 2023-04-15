@@ -1,16 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// const apiKey = 'k_cxax043y';
-export const authApi = createApi({
+
+export const AuthApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
     baseUrl: `https://movies-1l0g.onrender.com/api/`,
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['auth'],
   endpoints: builder => ({
-    // login: builder.query({
-    //   query: name => name,
-    //   providesTags: ['Auth'],
-    // }),
     login: builder.mutation({
       query: user => ({
         url: `/users/login`,
@@ -39,4 +42,4 @@ export const {
   useGetCurrentUserQuery,
   useLazyGetCurrentUserQuery,
   useUserLogoutMutation,
-} = authApi;
+} = AuthApi;
