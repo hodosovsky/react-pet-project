@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Button } from './Button/Button';
 import { AiFillAndroid, AiFillCar } from 'react-icons/ai';
 import { RotatingLines } from 'react-loader-spinner';
+
 import { Box } from './Box/Box';
 import { useGetTopFilmsQuery } from 'redux/moviesSlice';
 import {
@@ -12,6 +13,9 @@ import { getLoggedin, getToken } from '../redux//slice/authSlice';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { Layout } from './Layout/Layout';
+
+import { MovieList } from './MovieList/MovieList';
 
 const Text = styled.p`
   /* color: ${p => p.theme.colors.primary}; */
@@ -29,10 +33,10 @@ export const App = () => {
   const [userLogin, { isSuccess, isError }] = useLoginMutation();
   const { data, error, isFetching } = useGetTopFilmsQuery('/');
   const token = useSelector(getToken);
-
   const isLogdedin = useSelector(getLoggedin);
 
   const [fetchUser] = useLazyGetCurrentUserQuery();
+
   useEffect(() => {
     if (!isLogdedin && token) {
       fetchUser(null, { skip: !token });
@@ -72,80 +76,60 @@ export const App = () => {
   };
 
   return (
-    <Box
-      fontFamily="monospace"
-      bg="secondary"
-      color="text"
-      px={5}
-      py={8}
-      height="100%"
-      width="100%"
-      fontSize="m"
-      display="flex"
-      flexWrap="wrap"
-      justifyContent="center"
-      // alignItems="center"
-      as="main"
-    >
-      <Text>homework template</Text>
-      <Button icon={AiFillCar}>Кнопка</Button>
-      <Button>search</Button>
+    <Layout>
+      <Box
+        fontFamily="monospace"
+        bg="secondary"
+        color="text"
+        px={5}
+        py={8}
+        // height="100%"
+        // width="100%"
+        fontSize="m"
+        // display="flex"
+        // flexWrap="wrap"
+        // justifyContent="center"
+        // alignItems="center"
+        as="main"
+      >
+        <Text>homework template</Text>
+        <Button icon={AiFillCar}>Кнопка</Button>
+        <Button>search</Button>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          onChange={handleAddInputData}
-          value={email}
-          name="email"
-          placeholder="email"
-        />
-        <br />
-        <input
-          type="password"
-          onChange={handleAddInputData}
-          value={password}
-          name="password"
-          placeholder="password"
-        />
-        <Button icon={AiFillAndroid} type="submit">
-          LogIn
-        </Button>
-      </form>
-      {isFetching && (
-        <RotatingLines
-          strokeColor="grey"
-          strokeWidth="5"
-          animationDuration="0.75"
-          width="96"
-          visible={true}
-        />
-      )}
-
-      {data && !isFetching && (
-        <ul
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            gap: 40,
-            listStyle: 'none',
-            paddingLeft: 0,
-          }}
-        >
-          {data.results.map(item => (
-            <li key={item.id} style={{ width: 200 }}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200/${item.poster_path}`}
-                alt={item.title ? item.title : item.name}
-              />
-              <br />
-              {item.title ? item.title : item.name}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {isError && <h1>{error?.data}</h1>}
-    </Box>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            onChange={handleAddInputData}
+            value={email}
+            name="email"
+            placeholder="email"
+          />
+          <br />
+          <input
+            type="password"
+            onChange={handleAddInputData}
+            value={password}
+            name="password"
+            placeholder="password"
+          />
+          <Button icon={AiFillAndroid} type="submit">
+            LogIn
+          </Button>
+        </form>
+        {isFetching && (
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          />
+        )}
+        {data && !isFetching && <MovieList data={data.results} />}
+        {/* {data && !isFetching && <MovieList data={data.results} />} */}
+        {/* <Slider {...settings}>{movieList}</Slider> */}
+        {isError && <h1>{error?.data}</h1>}
+      </Box>
+    </Layout>
   );
 };
