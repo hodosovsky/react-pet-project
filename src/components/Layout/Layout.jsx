@@ -8,7 +8,6 @@ export const Layout = ({ children }) => {
       <AppBar />
       <Suspense fallback={<p>loading...</p>}>
         <Outlet />
-        {children}
       </Suspense>
 
       <p>footer</p>

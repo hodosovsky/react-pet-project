@@ -11,7 +11,11 @@ export const moviesApi = createApi({
       query: name => name,
       providesTags: ['Movie'],
     }),
+    getFilmActors: builder.query({
+      query: name => `${name}/credits`,
+      providesTags: ['Movie'],
+    }),
   }),
 });
 
-export const { useGetTopFilmsQuery } = moviesApi;
+export const { useGetTopFilmsQuery, useGetFilmActorsQuery } = moviesApi;
