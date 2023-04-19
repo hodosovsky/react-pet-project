@@ -3,6 +3,7 @@ export const theme = {
     text: '#000',
     white: '#fff',
     background: '#fff',
+    cardBackground: '#000',
     primary: '#07c',
     secondary: '#05a',
     accent: '#609',
@@ -36,7 +37,7 @@ export const theme = {
   },
   radii: {
     none: '0',
-    normal: '4px',
+    normal: '10px',
     round: '50%',
   },
 };
