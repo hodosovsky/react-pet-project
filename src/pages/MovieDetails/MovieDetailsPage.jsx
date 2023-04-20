@@ -8,7 +8,10 @@ import { GenresList, Indicator, JobList } from './MovieDetail.styled';
 
 const MovieDetailsPage = () => {
   const { moveiId } = useParams();
-  const { data, isFetching } = useGetTopFilmsQuery(`${moveiId}`);
+  const initLang = JSON.parse(localStorage.getItem('lang'));
+  const { data, isFetching } = useGetTopFilmsQuery(
+    `${moveiId}?language=${initLang}`
+  );
   const actors = useGetFilmActorsQuery(`${moveiId}`);
 
   const team = actors?.data?.crew.filter(

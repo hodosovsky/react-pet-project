@@ -9,7 +9,6 @@ export const Layout = ({ children }) => {
       <Suspense fallback={<p>loading...</p>}>
         <Outlet />
       </Suspense>
-
       <p>footer</p>
     </>
   );

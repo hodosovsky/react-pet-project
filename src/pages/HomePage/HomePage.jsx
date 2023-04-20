@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useGetTopFilmsQuery } from 'redux/moviesSlice';
 import { Box } from 'components/Box/Box';
 import { MovieList } from 'components/MovieList/MovieList';
+import { useTranslation } from 'react-i18next';
 
 const Text = styled.p`
   color: ${p => p.theme.colors.white};
@@ -22,9 +23,12 @@ const HomePage = () => {
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   // const [userLogin, { isSuccess, isError }] = useLoginMutation();
-  const { data, isFetching } = useGetTopFilmsQuery('?period=day');
+
+  const { data, isFetching } = useGetTopFilmsQuery(`?period=day`);
   const weeksTrand = useGetTopFilmsQuery('?period=week');
   const tvShow = useGetTopFilmsQuery('?type=tv');
+
+  const { t } = useTranslation();
 
   // const token = useSelector(getToken);
   // const isLogdedin = useSelector(getLoggedin);
@@ -119,13 +123,14 @@ const HomePage = () => {
       )}
       {data && weeksTrand.data && tvShow.data && (
         <>
-          <Text>У тренді сьогодні:</Text>
+          <Text>{t('main.trending')}</Text>
+
           {data && !isFetching && <MovieList data={data.results} />}
-          <Text>У трендах на цьому тижні:</Text>
+          <Text>{t('main.trending today')}</Text>
           {weeksTrand?.data && !weeksTrand.isFetching && (
             <MovieList data={weeksTrand.data.results} />
           )}
-          <Text>У трендах на ТБ:</Text>
+          <Text>{t('main.trending on tv')} </Text>
           {tvShow?.data && !tvShow.isFetching && (
             <MovieList data={tvShow.data.results} />
           )}
