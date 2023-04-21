@@ -89,8 +89,8 @@ const HomePage = () => {
       as="main"
     >
       {/* <Text>homework template</Text>
-        <Button icon={AiFillCar}>Кнопка</Button>
-        <Button>search</Button> */}
+      <Button icon={AiFillCar}>Кнопка</Button> */}
+      {/* <Button>search</Button> */}
 
       {/* <form onSubmit={handleSubmit}>
           <input

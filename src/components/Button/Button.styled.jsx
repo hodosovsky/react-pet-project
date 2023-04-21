@@ -11,7 +11,7 @@ export const StyledButton = styled.button`
   border-radius: ${p => p.theme.radii.normal};
   color: ${p => p.theme.colors.secondary};
   background-color: ${p =>
-    p.disabled ? p.theme.colors.muted : p.theme.colors.primary};
+    p.disabled ? p.theme.colors.muted : p.theme.colors.white};
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {

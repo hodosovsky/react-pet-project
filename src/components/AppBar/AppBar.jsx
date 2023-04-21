@@ -1,5 +1,5 @@
-import { StyledAppBar, StyledNav } from './AppBar.styled';
-import { FaPlus, FaLanguage, FaBell } from 'react-icons/fa';
+import { LangButton, StyledAppBar, StyledNav } from './AppBar.styled';
+import { FaPlus, FaBell } from 'react-icons/fa';
 import { FiCircle, FiSearch } from 'react-icons/fi';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,10 @@ export const AppBar = () => {
       </StyledNav>
       <StyledNav display="flex" m="auto 0" style={{ gap: 32 }}>
         <FaPlus size="20px" />
-        <FaLanguage size="20px" onClick={changeLanguage} />
+        {/* <FaLanguage size="20px" onClick={changeLanguage} /> */}
+        <LangButton type="button" onClick={changeLanguage}>
+          {lang}
+        </LangButton>
         <FaBell size="20px" />
         <FiCircle size="20px" />
         <FiSearch size="20px" />
