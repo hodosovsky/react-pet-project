@@ -17,3 +17,5 @@ export const JobList = styled.ul`
   flex-wrap: wrap;
   gap: 20px;
 `;
+
+
