@@ -10,6 +10,7 @@ import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { TeamList } from 'components/TeamList/TeamList';
 import { Trailer } from 'components/Trailer/Trailer';
 import { Spinner } from 'components/Spinner/Spinner';
+import { ActorsList } from 'components/ActorsList/ActorsList';
 
 const MovieDetailsPage = () => {
   const { moveiId } = useParams();
@@ -24,13 +25,13 @@ const MovieDetailsPage = () => {
   );
   const videos = useGetFilmVideosQuery(`${moveiId}&${initLang}`);
 
-  const trailer = videos?.data?.results[videos?.data?.results?.length - 1];
+  const trailer = videos?.data?.results.filter(el => el.type === 'Trailer');
 
   return (
     <>
       {data && !isFetching ? (
         <Box>
-          {trailer && <Trailer url={trailer.key} name={trailer.name} />}
+          {trailer && <Trailer url={trailer[0].key} name={trailer[0].name} />}
 
           <Box display="flex" py={5} px="40px">
             <img
@@ -42,6 +43,7 @@ const MovieDetailsPage = () => {
               {filmCrew && <TeamList filmCrew={filmCrew} />}
             </Box>
           </Box>
+          <ActorsList data={team?.data?.cast} />
         </Box>
       ) : (
         <Spinner />
