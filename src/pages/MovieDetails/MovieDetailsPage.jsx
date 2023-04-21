@@ -15,7 +15,7 @@ import { ActorsList } from 'components/ActorsList/ActorsList';
 const MovieDetailsPage = () => {
   const { moveiId } = useParams();
   const initLang = JSON.parse(localStorage.getItem('lang'));
-  const { data, isFetching } = useGetTopFilmsQuery(
+  const { data, isFetching, isError } = useGetTopFilmsQuery(
     `${moveiId}?language=${initLang}`
   );
   const team = useGetFilmActorsQuery(`${moveiId}`);
@@ -26,12 +26,16 @@ const MovieDetailsPage = () => {
   const videos = useGetFilmVideosQuery(`${moveiId}&${initLang}`);
 
   const trailer = videos?.data?.results.filter(el => el.type === 'Trailer');
+  console.log('trailer:', trailer);
 
   return (
     <>
-      {data && !isFetching ? (
+      {isError && <h1>No information about film</h1>}
+      {data && !isFetching && !isError && (
         <Box>
-          {trailer && <Trailer url={trailer[0].key} name={trailer[0].name} />}
+          {trailer[0] && (
+            <Trailer url={trailer[0]?.key} name={trailer[0]?.name} />
+          )}
 
           <Box display="flex" py={5} px="40px">
             <img
@@ -45,9 +49,8 @@ const MovieDetailsPage = () => {
           </Box>
           <ActorsList data={team?.data?.cast} />
         </Box>
-      ) : (
-        <Spinner />
       )}
+      {isFetching && <Spinner />}
     </>
   );
 };
