@@ -33,7 +33,7 @@ const MovieDetailsPage = () => {
       {isError && <h1>No information about film</h1>}
       {data && !isFetching && !isError && (
         <Box>
-          {trailer[0] && (
+          {trailer && trailer[0] && (
             <Trailer url={trailer[0]?.key} name={trailer[0]?.name} />
           )}
 
