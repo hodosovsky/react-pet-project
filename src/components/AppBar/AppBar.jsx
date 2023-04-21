@@ -4,6 +4,7 @@ import { FiCircle, FiSearch } from 'react-icons/fi';
 import { ReactComponent as Logo } from '../../images/logo.svg';
 import { useTranslation } from 'react-i18next';
 import { useLocalStorage } from 'hooks/useLocalStorage';
+import { Link } from 'react-router-dom';
 
 export const AppBar = () => {
   const { i18n } = useTranslation();
@@ -32,9 +33,11 @@ export const AppBar = () => {
       as="header"
     >
       <StyledNav display="flex">
-        <Logo
-          style={{ width: 154, height: 20, margin: 'auto', marginRight: 40 }}
-        />
+        <Link to="/">
+          <Logo
+            style={{ width: 154, height: 20, margin: 'auto', marginRight: 40 }}
+          />
+        </Link>
 
         <p>Фільми</p>
         <p>Серіали</p>
@@ -42,7 +45,9 @@ export const AppBar = () => {
         <p>Ще</p>
       </StyledNav>
       <StyledNav display="flex" m="auto 0" style={{ gap: 32 }}>
-        <FaPlus size="20px" />
+        <Link to={'login'}>
+          <FaPlus size="20px" />
+        </Link>
         {/* <FaLanguage size="20px" onClick={changeLanguage} /> */}
         <LangButton type="button" onClick={changeLanguage}>
           {lang}

@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// const apiKey = 'k_cxax043y';
-const initLang = JSON.parse(localStorage.getItem('lang'));
+
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
   baseQuery: fetchBaseQuery({
@@ -17,7 +16,9 @@ export const moviesApi = createApi({
       providesTags: ['Movie'],
     }),
     getFilmVideos: builder.query({
-      query: name => `${name}/videos?language=${initLang}`,
+      query: name => {
+        return `${name.split('&')[0]}/videos?language=${name.split('&')[1]}`;
+      },
       providesTags: ['Movie'],
     }),
   }),

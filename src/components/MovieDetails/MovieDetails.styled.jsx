@@ -11,9 +11,3 @@ export const Indicator = styled.div`
   font-size: 24px;
   color: ${p => p.theme.colors.white};
 `;
-
-// export const JobList = styled.ul`
-//   display: flex;
-//   flex-wrap: wrap;
-//   gap: 20px;
-// `;
