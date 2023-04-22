@@ -18,6 +18,7 @@ export const AppBar = () => {
       i18n.changeLanguage('en-US');
       setLang('en-US');
     }
+    window.location.reload();
   };
 
   return (

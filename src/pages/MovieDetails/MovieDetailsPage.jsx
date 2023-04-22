@@ -26,7 +26,6 @@ const MovieDetailsPage = () => {
   const videos = useGetFilmVideosQuery(`${moveiId}&${initLang}`);
 
   const trailer = videos?.data?.results.filter(el => el.type === 'Trailer');
-  console.log('trailer:', trailer);
 
   return (
     <>

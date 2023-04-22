@@ -4,7 +4,6 @@ import settings from './settings';
 import { Box } from 'components/Box/Box';
 
 export const ActorsList = ({ data }) => {
-  console.log('data:', data);
   const renderActors = data?.map(item => (
     <ActorsCard key={item.id} actor={item} />
   ));
