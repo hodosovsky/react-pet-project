@@ -3,12 +3,24 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://movies-1l0g.onrender.com/api/`,
+    baseUrl: `https://movies-1l0g.onrender.com/api`,
   }),
   tagTypes: ['Movies'],
   endpoints: builder => ({
     getTopFilms: builder.query({
-      query: name => name,
+      query: arg => {
+        const {
+          name = '',
+          type = 'all',
+          period = 'day',
+          page = 1,
+          lang = 'en-US',
+        } = arg;
+        return {
+          url: name,
+          params: { type: type, period: period, page: page, language: lang },
+        };
+      },
       providesTags: ['Movie'],
     }),
     getFilmActors: builder.query({

@@ -4,6 +4,7 @@ import { Box } from 'components/Box/Box';
 import { MovieList } from 'components/MovieList/MovieList';
 import { useTranslation } from 'react-i18next';
 import { Spinner } from 'components/Spinner/Spinner';
+import { useState } from 'react';
 
 const Text = styled.p`
   color: ${p => p.theme.colors.white};
@@ -13,9 +14,24 @@ const Text = styled.p`
 `;
 
 const HomePage = () => {
-  const { data, isFetching } = useGetTopFilmsQuery(`?period=day`);
-  const weeksTrand = useGetTopFilmsQuery('?period=week');
-  const tvShow = useGetTopFilmsQuery('?type=tv');
+  const [page] = useState(1);
+
+  const { data, isFetching } = useGetTopFilmsQuery({
+    type: 'movie',
+    period: 'week',
+    page: page,
+  });
+
+  const weeksTrand = useGetTopFilmsQuery({
+    type: 'movie',
+    period: 'day',
+    page: page,
+  });
+  const tvShow = useGetTopFilmsQuery({
+    type: 'tv',
+    period: 'week',
+    page: page,
+  });
   const { t } = useTranslation();
 
   return (

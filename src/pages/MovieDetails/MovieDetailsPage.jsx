@@ -15,9 +15,10 @@ import { ActorsList } from 'components/ActorsList/ActorsList';
 const MovieDetailsPage = () => {
   const { moveiId } = useParams();
   const initLang = JSON.parse(localStorage.getItem('lang'));
-  const { data, isFetching, isError } = useGetTopFilmsQuery(
-    `${moveiId}?language=${initLang}`
-  );
+  const { data, isFetching, isError } = useGetTopFilmsQuery({
+    name: moveiId,
+    lang: initLang,
+  });
   const team = useGetFilmActorsQuery(`${moveiId}`);
 
   const filmCrew = team?.data?.crew.filter(
