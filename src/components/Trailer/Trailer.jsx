@@ -2,7 +2,7 @@ import { Box } from 'components/Box/Box';
 
 export const Trailer = ({ url, name }) => {
   return (
-    <Box my={4} display="flex" justifyContent="center">
+    <Box py={4} display="flex" justifyContent="center">
       <iframe
         width="560"
         height="315"

@@ -19,6 +19,8 @@ const MovieDetailsPage = () => {
     name: moveiId,
     lang: initLang,
   });
+  console.log('data:', data);
+
   const team = useGetFilmActorsQuery(`${moveiId}`);
 
   const filmCrew = team?.data?.crew.filter(
@@ -32,7 +34,13 @@ const MovieDetailsPage = () => {
     <>
       {isError && <h1>No information about film</h1>}
       {data && !isFetching && !isError && (
-        <Box>
+        <Box
+          backgroundImage={`linear-gradient(transparent, rgba(37, 37, 37, 0.61), rgb(17, 17, 17)), url(https://image.tmdb.org/t/p/w500${data.backdrop_path})`}
+          backgroundPosition="center"
+          backgroundSize="cover"
+          backgroundRepeat="no-repeat"
+          color="white"
+        >
           {trailer && trailer[0] && (
             <Trailer url={trailer[0]?.key} name={trailer[0]?.name} />
           )}

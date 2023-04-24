@@ -20,7 +20,7 @@ export const MovieDetails = ({ data }) => {
         </p>
         <GenresList>
           {data.genres.map(el => (
-            <Link to={`genres/${el.id}`} key={el.id}>
+            <Link to={`/genres/${el.id}`} key={el.id}>
               <li>{el.name}</li>
             </Link>
           ))}
