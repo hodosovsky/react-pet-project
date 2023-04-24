@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 import { persistor, store } from 'redux/store';
 import { theme } from './theme';
 import './i18n';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+// import 'slick-carousel/slick/slick.css';
+// import 'slick-carousel/slick/slick-theme.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
