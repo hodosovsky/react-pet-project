@@ -1,6 +1,6 @@
 const settings = {
   dots: false,
-
+  lazyLoad: true,
   speed: 500,
   slidesToShow: 6,
   slidesToScroll: 3,
