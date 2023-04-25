@@ -1,10 +1,10 @@
 const settings = {
   dots: false,
-  lazyLoad: true,
+  // infinite: false,
   speed: 500,
   slidesToShow: 6,
   slidesToScroll: 3,
-  initialSlide: 0,
+  currentSlide: 0,
 
   responsive: [
     {
@@ -12,7 +12,9 @@ const settings = {
       settings: {
         slidesToShow: 4,
         slidesToScroll: 2,
-        infinite: true,
+        // infinite: false,
+        // infinite: true,
+        currentSlide: 0,
         dots: false,
       },
     },
@@ -21,7 +23,7 @@ const settings = {
       settings: {
         slidesToShow: 3,
         slidesToScroll: 1,
-        initialSlide: 1,
+        // initialSlide: 1,
       },
     },
     {
