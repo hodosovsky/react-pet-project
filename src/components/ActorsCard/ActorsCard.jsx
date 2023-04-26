@@ -6,7 +6,7 @@ import { ReactComponent as WomanAvatar } from '../../images/woman.svg';
 export const ActorsCard = ({ actor }) => {
   return (
     <Link to={`/actor/${actor.id}`}>
-      <Box>
+      <Box px={4}>
         {actor.profile_path ? (
           <img
             src={`https://image.tmdb.org/t/p/w300/${actor.profile_path}`}

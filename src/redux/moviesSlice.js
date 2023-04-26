@@ -43,6 +43,13 @@ export const moviesApi = createApi({
       }),
       providesTags: ['Movie'],
     }),
+    getGenresList: builder.query({
+      query: lang => ({
+        url: `genre/movie/list`,
+        params: { api_key: key, language: lang },
+      }),
+      providesTags: ['Movie'],
+    }),
   }),
 });
 
@@ -52,4 +59,5 @@ export const {
   useGetFilmActorsQuery,
   useGetFilmVideosQuery,
   useGetFilmByGenreQuery,
+  useGetGenresListQuery,
 } = moviesApi;

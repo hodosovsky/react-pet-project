@@ -19,7 +19,6 @@ const MovieDetailsPage = () => {
     id: moveiId,
     lang: initLang,
   });
-  console.log('data:', data);
 
   const team = useGetFilmActorsQuery(moveiId);
 

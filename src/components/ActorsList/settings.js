@@ -2,8 +2,8 @@ const settings = {
   dots: true,
   infinite: false,
   speed: 500,
-  slidesToShow: 12,
-  slidesToScroll: 12,
+  slidesToShow: 10,
+  slidesToScroll: 10,
   initialSlide: 0,
   appendDots: dots => (
     <div
