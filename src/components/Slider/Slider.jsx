@@ -8,7 +8,6 @@ import { MovieCard } from 'components/MovieCard/MovieCard';
 
 const CustomSlider = ({ type, period }) => {
   const [sliderData, setSliderData] = useState([]);
-  localStorage.setItem('currentSlide', 0);
   const [page, setPage] = useState(1);
   const { data } = useGetTopFilmsQuery({
     type,
@@ -28,6 +27,7 @@ const CustomSlider = ({ type, period }) => {
   );
 
   const handleSliderAfterChange = index => {
+    console.log('index:', index);
     if (
       index === sliderData.length - 5 ||
       index === sliderData.length - 6 ||
@@ -49,7 +49,7 @@ const CustomSlider = ({ type, period }) => {
     >
       <Slider
         {...settings}
-        // initialSlide={0}
+        initialSlide={10}
         afterChange={handleSliderAfterChange}
       >
         {memoizedMovieCards}

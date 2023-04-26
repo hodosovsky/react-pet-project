@@ -50,17 +50,17 @@ const HomePage = () => {
       ) : (
         <>
           {data && weeksTrand?.data && tvShow?.data && ( */}
-      <>
-        <Text>{t('main.trending')}</Text>
-        <CustomSlider period={'week'} type={'movie'} />
-        {/* <MovieList data={data.results} /> */}
-        <Text>{t('main.trending today')}</Text>
-        <CustomSlider period={'day'} type={'movie'} />
-        {/* <MovieList data={weeksTrand.data.results} /> */}
-        <Text>{t('main.trending on tv')} </Text>
-        {/* <MovieList data={tvShow.data.results} /> */}
-        <CustomSlider period={'week'} type={'tv'} />
-      </>
+
+      <Text>{t('main.trending')}</Text>
+      <CustomSlider period={'week'} type={'movie'} />
+      {/* <MovieList data={data.results} /> */}
+      <Text>{t('main.trending today')}</Text>
+      <CustomSlider period={'day'} type={'movie'} />
+      {/* <MovieList data={weeksTrand.data.results} /> */}
+      <Text>{t('main.trending on tv')} </Text>
+      {/* <MovieList data={tvShow.data.results} /> */}
+      <CustomSlider period={'week'} type={'tv'} />
+
       {/* )} */}
       {/* </> */}
       {/* // )} */}
