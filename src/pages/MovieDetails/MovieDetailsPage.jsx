@@ -2,8 +2,8 @@ import { Box } from 'components/Box/Box';
 import { useParams } from 'react-router-dom';
 import {
   useGetFilmActorsQuery,
+  useGetFilmDetailsQuery,
   useGetFilmVideosQuery,
-  useGetTopFilmsQuery,
 } from 'redux/moviesSlice';
 
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
@@ -15,18 +15,18 @@ import { ActorsList } from 'components/ActorsList/ActorsList';
 const MovieDetailsPage = () => {
   const { moveiId } = useParams();
   const initLang = JSON.parse(localStorage.getItem('lang'));
-  const { data, isFetching, isError } = useGetTopFilmsQuery({
-    name: moveiId,
+  const { data, isFetching, isError } = useGetFilmDetailsQuery({
+    id: moveiId,
     lang: initLang,
   });
   console.log('data:', data);
 
-  const team = useGetFilmActorsQuery(`${moveiId}`);
+  const team = useGetFilmActorsQuery(moveiId);
 
   const filmCrew = team?.data?.crew.filter(
     el => el.job === 'Director' || el.job === 'Story' || el.job === 'Screenplay'
   );
-  const videos = useGetFilmVideosQuery(`${moveiId}&${initLang}`);
+  const videos = useGetFilmVideosQuery({ id: moveiId, lang: initLang });
 
   const trailer = videos?.data?.results.filter(el => el.type === 'Trailer');
 
