@@ -50,9 +50,7 @@ export const AppBar = () => {
           <FaPlus size="20px" />
         </NavLink>
         {/* <FaLanguage size="20px" onClick={changeLanguage} /> */}
-        <LangButton type="button" onClick={changeLanguage}>
-          {lang}
-        </LangButton>
+        <LangButton onClick={changeLanguage}>{lang}</LangButton>
         <FaBell size="20px" />
         <FiCircle size="20px" />
         <FiSearch size="20px" />

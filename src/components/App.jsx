@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MovieDetailsPage from 'pages/MovieDetails/MovieDetailsPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import GenrePage from 'pages/GenresPage/GenresPage';
+import PersonPage from 'pages/PersonPage/PersonPage';
 
 export const App = () => {
   const token = useSelector(getToken);
@@ -30,6 +31,7 @@ export const App = () => {
             <Route path="login" element={<LoginPage />} />
             <Route path="movie/:moveiId" element={<MovieDetailsPage />} />
             <Route path="genres/:genreId" element={<GenrePage />} />
+            <Route path="actor/:personId" element={<PersonPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

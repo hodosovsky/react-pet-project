@@ -50,6 +50,20 @@ export const moviesApi = createApi({
       }),
       providesTags: ['Movie'],
     }),
+    getActorInfo: builder.query({
+      query: ({ personId, lang = 'en-US' }) => ({
+        url: `person/${personId}`,
+        params: { api_key: key, language: lang },
+      }),
+      providesTags: ['Movie'],
+    }),
+    getFilmsByActor: builder.query({
+      query: ({ personId, lang = 'en-US' }) => ({
+        url: `person/${personId}/movie_credits`,
+        params: { api_key: key, language: lang },
+      }),
+      providesTags: ['Movie'],
+    }),
   }),
 });
 
@@ -60,4 +74,6 @@ export const {
   useGetFilmVideosQuery,
   useGetFilmByGenreQuery,
   useGetGenresListQuery,
+  useGetActorInfoQuery,
+  useGetFilmsByActorQuery,
 } = moviesApi;

@@ -26,7 +26,7 @@ const GenrePage = () => {
   const { data: genres, isLoading: isGenreLoading } =
     useGetGenresListQuery(initLang);
 
-  const filmGenre = genres?.genres?.find(el => el.id === genreId);
+  const filmGenre = genres?.genres?.find(el => el.id === +genreId);
 
   useEffect(() => {
     if (data?.results) {

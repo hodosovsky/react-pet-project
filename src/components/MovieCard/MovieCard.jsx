@@ -25,12 +25,18 @@ export const MovieCard = ({ movie }) => {
               progress={movie.vote_average * 10}
               radius={20}
               strokeWidth={4}
-              strokeColor="green"
+              strokeColor={
+                movie.vote_average > 7
+                  ? 'green'
+                  : movie.vote_average > 5
+                  ? 'orange'
+                  : 'red'
+              }
               trackStrokeWidth={7}
               pointerFillColor="cardBackground"
               fillColor="cardBackground"
             />
-            <Indicator className="indicator">
+            <Indicator>
               <div>{movie.vote_average.toFixed(1)}</div>
             </Indicator>
           </Box>

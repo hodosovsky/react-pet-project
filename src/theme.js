@@ -24,11 +24,11 @@ export const theme = {
     l: '32px',
     xl: '64px',
   },
-  fontWeight: {
+  fontWeights: {
     normal: 400,
     bold: 700,
   },
-  lineHeight: {
+  lineHeights: {
     body: 1.5,
     heading: 1.125,
   },
@@ -38,6 +38,7 @@ export const theme = {
   },
   radii: {
     none: '0',
+    light: '8px',
     normal: '10px',
     round: '50%',
   },
