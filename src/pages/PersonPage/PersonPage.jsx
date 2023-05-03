@@ -13,14 +13,14 @@ const PersonPage = () => {
 
   const initLang = JSON.parse(localStorage.getItem('lang'));
   const { data } = useGetActorInfoQuery({ personId, lang: initLang });
-  const { data: ActorsFilm } = useGetFilmsByActorQuery({
+  const { data: actorsFilm } = useGetFilmsByActorQuery({
     personId,
     lang: initLang,
   });
 
   return (
     <Box display="flex" p={5}>
-      {data && ActorsFilm ? (
+      {data && actorsFilm ? (
         <>
           <Box flexShrink="0">
             <img
@@ -30,7 +30,7 @@ const PersonPage = () => {
           </Box>
           <Box pl={5}>
             <ActorInfo data={data} />
-            <ActorsFilms data={ActorsFilm?.cast} />
+            <ActorsFilms ActorsFilm={actorsFilm?.cast} />
           </Box>
         </>
       ) : (

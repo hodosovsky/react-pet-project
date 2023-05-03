@@ -24,6 +24,13 @@ export const moviesApi = createApi({
       }),
       providesTags: ['Movie'],
     }),
+    getTvDetails: builder.query({
+      query: ({ id, lang = 'en-US' }) => ({
+        url: `tv/${id}`,
+        params: { language: lang, api_key: key },
+      }),
+      providesTags: ['Movie'],
+    }),
     getFilmActors: builder.query({
       query: id => ({ url: `movie/${id}/credits`, params: { api_key: key } }),
 
@@ -64,16 +71,25 @@ export const moviesApi = createApi({
       }),
       providesTags: ['Movie'],
     }),
+    gettvShowsByActor: builder.query({
+      query: ({ personId, lang = 'en-US' }) => ({
+        url: `person/${personId}/tv_credits`,
+        params: { api_key: key, language: lang },
+      }),
+      providesTags: ['Movie'],
+    }),
   }),
 });
 
 export const {
   useGetTopFilmsQuery,
   useGetFilmDetailsQuery,
+  useGetTvDetailsQuery,
   useGetFilmActorsQuery,
   useGetFilmVideosQuery,
   useGetFilmByGenreQuery,
   useGetGenresListQuery,
   useGetActorInfoQuery,
   useGetFilmsByActorQuery,
+  useGettvShowsByActorQuery,
 } = moviesApi;
