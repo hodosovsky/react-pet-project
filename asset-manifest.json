@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-pet-project/static/css/main.f698bb0b.css",
-    "main.js": "/react-pet-project/static/js/main.f3e7060e.js",
+    "main.js": "/react-pet-project/static/js/main.7d02500f.js",
     "static/media/default_poster.jpg": "/react-pet-project/static/media/default_poster.3f9715169e330b10feb4.jpg",
     "static/media/man.svg": "/react-pet-project/static/media/man.93ff1c25367b6caf4ca7b47173ef2e2f.svg",
     "static/media/woman.svg": "/react-pet-project/static/media/woman.a8530c61bde5c31faa2105deddb1fee8.svg",
@@ -9,10 +9,10 @@
     "index.html": "/react-pet-project/index.html",
     "static/media/getFetch.cjs": "/react-pet-project/static/media/getFetch.40f37ddea2378391108f.cjs",
     "main.f698bb0b.css.map": "/react-pet-project/static/css/main.f698bb0b.css.map",
-    "main.f3e7060e.js.map": "/react-pet-project/static/js/main.f3e7060e.js.map"
+    "main.7d02500f.js.map": "/react-pet-project/static/js/main.7d02500f.js.map"
   },
   "entrypoints": [
     "static/css/main.f698bb0b.css",
-    "static/js/main.f3e7060e.js"
+    "static/js/main.7d02500f.js"
   ]
 }
