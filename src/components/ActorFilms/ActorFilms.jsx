@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { StyledContainer, StyledFilmList } from './ActorFilms.styled';
 import defaultPoster from '../../images/default_poster.jpg';
+import { useTranslation } from 'react-i18next';
 
-export const ActorsFilms = ({ ActorsFilm }) => {
-  const films = [...ActorsFilm];
+export const ActorsFilms = ({ actorsFilm, actorsSerials }) => {
+  const { t } = useTranslation();
+  const films = [...actorsFilm, ...actorsSerials];
   console.log('films:', films);
   const sortedFilms = films.sort((a, b) => b.vote_count - a.vote_count);
 
@@ -12,7 +14,7 @@ export const ActorsFilms = ({ ActorsFilm }) => {
       <StyledFilmList>
         {sortedFilms.map((el, idx) => (
           <li key={el.id}>
-            <Link to={`/movie/${el.id}`}>
+            <Link to={el.title ? `/movie/${el.id}` : `/serial/${el.id}`}>
               <img
                 src={
                   el.poster_path
@@ -21,7 +23,9 @@ export const ActorsFilms = ({ ActorsFilm }) => {
                 }
                 alt={el.title}
               />
-              <h3>{el.title ? el.title : el.name}</h3>
+              <h3>
+                {el.title ? el.title : `${el.name} ${t('actorPage.tvShow')}`}
+              </h3>
             </Link>
           </li>
         ))}

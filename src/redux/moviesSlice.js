@@ -36,9 +36,21 @@ export const moviesApi = createApi({
 
       providesTags: ['Movie'],
     }),
+    getTvActors: builder.query({
+      query: id => ({ url: `tv/${id}/credits`, params: { api_key: key } }),
+
+      providesTags: ['Movie'],
+    }),
     getFilmVideos: builder.query({
       query: ({ id, lang = 'en-US' }) => ({
         url: `movie/${id}/videos`,
+        params: { language: lang, api_key: key },
+      }),
+      providesTags: ['Movie'],
+    }),
+    getTvVideos: builder.query({
+      query: ({ id, lang = 'en-US' }) => ({
+        url: `tv/${id}/videos`,
         params: { language: lang, api_key: key },
       }),
       providesTags: ['Movie'],
@@ -50,9 +62,23 @@ export const moviesApi = createApi({
       }),
       providesTags: ['Movie'],
     }),
+    getTvByGenre: builder.query({
+      query: ({ id, page = 1 }) => ({
+        url: `/discover/tv?with_genres=${id}&page=${page}`,
+        params: { api_key: key },
+      }),
+      providesTags: ['Movie'],
+    }),
     getGenresList: builder.query({
       query: lang => ({
         url: `genre/movie/list`,
+        params: { api_key: key, language: lang },
+      }),
+      providesTags: ['Movie'],
+    }),
+    getTvGenresList: builder.query({
+      query: lang => ({
+        url: `genre/tv/list`,
         params: { api_key: key, language: lang },
       }),
       providesTags: ['Movie'],
@@ -86,9 +112,13 @@ export const {
   useGetFilmDetailsQuery,
   useGetTvDetailsQuery,
   useGetFilmActorsQuery,
+  useGetTvActorsQuery,
   useGetFilmVideosQuery,
+  useGetTvVideosQuery,
   useGetFilmByGenreQuery,
+  useGetTvByGenreQuery,
   useGetGenresListQuery,
+  useGetTvGenresListQuery,
   useGetActorInfoQuery,
   useGetFilmsByActorQuery,
   useGettvShowsByActorQuery,

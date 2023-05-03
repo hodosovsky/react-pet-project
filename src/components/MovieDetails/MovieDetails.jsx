@@ -5,29 +5,46 @@ import { Link } from 'react-router-dom';
 import ProgressBar from 'react-customizable-progressbar';
 
 export const MovieDetails = ({ data }) => {
+  console.log('data:', data);
   return (
     <>
       <h1>
-        {data.title ? data.title : data.original_title} (
-        {new Date(data.release_date).getFullYear()})
+        {data.title ? data.title : data.original_title || data.name} (
+        {data.release_date
+          ? new Date(data.release_date).getFullYear()
+          : new Date(data.first_air_date).getFullYear()}
+        )
       </h1>
       <Box display="flex">
         <p>
-          {new Date(data.release_date).getDate()}/
-          {new Date(data.release_date).getMonth()}/
-          {new Date(data.release_date).getFullYear()} ({data.original_language}){' '}
-          <RxDotFilled />
+          {data.release_date
+            ? new Date(data.release_date).getDate()
+            : new Date(data.first_air_date).getDate()}
+          /
+          {data.release_date
+            ? new Date(data.release_date).getMonth()
+            : new Date(data.first_air_date).getMonth()}
+          /
+          {data.release_date
+            ? new Date(data.release_date).getFullYear()
+            : new Date(data.first_air_date).getFullYear()}{' '}
+          ({data.original_language}
+          ) <RxDotFilled />
         </p>
         <GenresList>
           {data.genres.map(el => (
-            <Link to={`/genres/${el.id}`} key={el.id}>
+            <Link
+              to={data.name ? `/tv/genres/${el.id}` : `/genres/${el.id}`}
+              key={el.id}
+            >
               <li>{el.name}</li>
             </Link>
           ))}
         </GenresList>
         <RxDotFilled />
-        {Math.floor(data.runtime / 60)}h{' '}
-        {data.runtime - Math.floor(data.runtime / 60) * 60}m
+        {data.runtime && `${Math.floor(data.runtime / 60)}h `}
+        {data.runtime &&
+          `${data.runtime - Math.floor(data.runtime / 60) * 60}m`}
       </Box>
       <Box position="relative" width="150px" display="flex" alignItems="center">
         <ProgressBar

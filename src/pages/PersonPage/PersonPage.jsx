@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import {
   useGetActorInfoQuery,
   useGetFilmsByActorQuery,
+  useGettvShowsByActorQuery,
 } from 'redux/moviesSlice';
 
 const PersonPage = () => {
@@ -18,9 +19,15 @@ const PersonPage = () => {
     lang: initLang,
   });
 
+  const { data: actorsSerials } = useGettvShowsByActorQuery({
+    personId,
+    lang: initLang,
+  });
+  console.log('actorsSerials:', actorsSerials);
+
   return (
     <Box display="flex" p={5}>
-      {data && actorsFilm ? (
+      {data && actorsFilm && actorsSerials ? (
         <>
           <Box flexShrink="0">
             <img
@@ -30,7 +37,10 @@ const PersonPage = () => {
           </Box>
           <Box pl={5}>
             <ActorInfo data={data} />
-            <ActorsFilms ActorsFilm={actorsFilm?.cast} />
+            <ActorsFilms
+              actorsFilm={actorsFilm?.cast}
+              actorsSerials={actorsSerials?.cast}
+            />
           </Box>
         </>
       ) : (

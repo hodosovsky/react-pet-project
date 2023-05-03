@@ -9,6 +9,8 @@ import MovieDetailsPage from 'pages/MovieDetails/MovieDetailsPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
 import GenrePage from 'pages/GenresPage/GenresPage';
 import PersonPage from 'pages/PersonPage/PersonPage';
+import TvDetailsPage from 'pages/TvDetails/TvDetailsPage';
+import TvGenrePage from 'pages/TvGenresPage/TvGenresPage';
 
 export const App = () => {
   const token = useSelector(getToken);
@@ -30,7 +32,9 @@ export const App = () => {
             <Route index element={<HomePage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="movie/:moveiId" element={<MovieDetailsPage />} />
+            <Route path="serial/:moveiId" element={<TvDetailsPage />} />
             <Route path="genres/:genreId" element={<GenrePage />} />
+            <Route path="tv/genres/:genreId" element={<TvGenrePage />} />
             <Route path="actor/:personId" element={<PersonPage />} />
           </Route>
         </Routes>

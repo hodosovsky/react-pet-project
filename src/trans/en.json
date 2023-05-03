@@ -6,12 +6,14 @@
     "ukraine": "ukraine"
   },
   "genre": {
-    "title": "MOVIES BY GENRE"
+    "title": "MOVIES BY GENRE",
+    "name": "TV SHOWS BY GENRE"
   },
   "actorPage": {
     "biography": "Biography",
     "readMore": "Read More >",
     "hide": "Hide",
-    "knownFor": "Known For"
+    "knownFor": "Known For",
+    "tvShow": "TV Show"
   }
 }
